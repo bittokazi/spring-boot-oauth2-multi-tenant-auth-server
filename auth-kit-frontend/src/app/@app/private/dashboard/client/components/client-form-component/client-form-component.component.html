@@ -1,0 +1,135 @@
+<form class="form" [formGroup]="form">
+  <div class="row">
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Client ID"
+        placeHolder="Will be auto generated"
+        errorMessage="Please enter a valid name"
+        [control]="form.controls.clientId"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Resource ID"
+        placeHolder="a to z and _ is allowed"
+        errorMessage="Please enter a valid key"
+        [control]="form.controls.resourceIds"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Scope"
+        placeHolder="scope"
+        errorMessage="Please enter a valid key"
+        [control]="form.controls.scope"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Client Authentication Method"
+        placeHolder="..."
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.clientAuthenticationMethod"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Authorized Grant Types"
+        placeHolder="..."
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.authorizedGrantTypes"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Redirect URL"
+        placeHolder="..."
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.webServerRedirectUri"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Access Token Validity"
+        placeHolder="..."
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.accessTokenValidity"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Refresh Token Validity"
+        placeHolder="..."
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.refreshTokenValidity"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Post Logout URL"
+        placeHolder="..."
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.postLogoutUrl"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Token Type (jwt/opaque)"
+        placeHolder="..."
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.tokenType"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-switch-input
+        label="Require Consent"
+        [control]="form.controls.requireConsent"
+      >
+      </app-verticle-switch-input>
+    </div>
+
+    <div class="col-md-6 col-6">
+      <app-verticle-switch-input
+        label="Generate New Secret"
+        [control]="form.controls.generateSecret"
+      >
+      </app-verticle-switch-input>
+    </div>
+
+    <div class="col-12">
+      <button
+        type="submit"
+        (click)="onSubmit()"
+        [disabled]="form.invalid || loading"
+        class="btn btn-primary me-1"
+      >
+        <ng-container *ngIf="!edit"> Add Client </ng-container>
+
+        <ng-container *ngIf="edit"> Update Client </ng-container>
+      </button>
+      <button *ngIf="!edit" type="reset" class="btn btn-outline-secondary">
+        Reset
+      </button>
+    </div>
+  </div>
+</form>

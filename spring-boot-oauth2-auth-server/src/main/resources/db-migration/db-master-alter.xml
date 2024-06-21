@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="4" author="bitto">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="users"
+                              columnName="two_fa_enabled" />
+            </not>
+        </preConditions>
+        <addColumn tableName="users">
+            <column name="two_fa_enabled" type="BOOLEAN" value="false" />
+        </addColumn>
+
+        <createTable tableName="user_two_fa_secret">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="user_id" type="varchar(128)" />
+            <column name="secret" type="varchar(511)" />
+            <column name="scratch_codes" type="varchar(50000)" />
+        </createTable>
+
+        <createTable tableName="user_trusted_device">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="user_id" type="varchar(128)" />
+            <column name="instance_id" type="varchar(255)" />
+            <column name="device_ip" type="varchar(255)" />
+            <column name="user_agent" type="varchar(10000)" />
+        </createTable>
+
+        <createSequence cycle="true" incrementBy="1"
+                        sequenceName="user_two_fa_secret_sequence" startValue="1" />
+        <createSequence cycle="true" incrementBy="1"
+                        sequenceName="user_trusted_device_sequence" startValue="1" />
+    </changeSet>
+
+    <changeSet id="5" author="bitto">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="tenant"
+                              columnName="signin_btn_color" />
+            </not>
+        </preConditions>
+        <addColumn tableName="tenant">
+            <column name="signin_btn_color" type="varchar(128)" value="" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="6" author="bitto">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="tenant"
+                              columnName="reset_password_link" />
+            </not>
+        </preConditions>
+        <addColumn tableName="tenant">
+            <column name="reset_password_link" type="varchar(1000)" value="" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="7" author="bitto">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="tenant"
+                              columnName="create_account_link" />
+            </not>
+        </preConditions>
+        <addColumn tableName="tenant">
+            <column name="create_account_link" type="varchar(1000)" value="" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="8" author="bitto">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="tenant"
+                              columnName="default_redirect_url" />
+            </not>
+        </preConditions>
+        <addColumn tableName="tenant">
+            <column name="default_redirect_url" type="varchar(1000)" value="" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="9" author="bitto">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="tenant"
+                              columnName="enable_config_panel" />
+            </not>
+        </preConditions>
+        <addColumn tableName="tenant">
+            <column name="enable_config_panel" type="BOOLEAN" value="false" />
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

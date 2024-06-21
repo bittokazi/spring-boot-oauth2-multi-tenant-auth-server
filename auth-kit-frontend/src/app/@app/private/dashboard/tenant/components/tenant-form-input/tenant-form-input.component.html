@@ -1,0 +1,96 @@
+<form class="form" [formGroup]="form">
+  <div class="row">
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Tenant name"
+        placeHolder="give a suitable name..."
+        errorMessage="Please enter a valid name"
+        [control]="form.controls.name"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-6">
+      <app-verticle-text-input
+        label="Company Key"
+        placeHolder="a to z and _ is allowed"
+        errorMessage="Please enter a valid key"
+        [control]="form.controls.companyKey"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Domain"
+        placeHolder="Auth issuer domain"
+        errorMessage="Please enter a valid key"
+        [control]="form.controls.domain"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Signin Button Color"
+        placeHolder="Signin button color"
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.signInBtnColor"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Reset Password Link"
+        placeHolder="Reset password link"
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.resetPasswordLink"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Create Account Link"
+        placeHolder="Create account link"
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.createAccountLink"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Defult Redirect URL"
+        placeHolder="Defult Redirect URL"
+        errorMessage="Please enter a valid value"
+        [control]="form.controls.defaultRedirectUrl"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-2 col-12">
+      <app-verticle-switch-input
+        label="Enable Config Panel"
+        [control]="form.controls.enableConfigPanel"
+      >
+      </app-verticle-switch-input>
+    </div>
+    <div class="col-md-4 col-12">
+      <app-verticle-switch-input
+        label="Enabled"
+        [control]="form.controls.enabled"
+      >
+      </app-verticle-switch-input>
+    </div>
+    <div class="col-12">
+      <button
+        type="submit"
+        (click)="onSubmit()"
+        [disabled]="form.invalid || loading"
+        class="btn btn-primary me-1"
+      >
+        <ng-container *ngIf="!edit"> Add Tenant </ng-container>
+
+        <ng-container *ngIf="edit"> Update Tenant </ng-container>
+      </button>
+      <button *ngIf="!edit" type="reset" class="btn btn-outline-secondary">
+        Reset
+      </button>
+    </div>
+  </div>
+</form>

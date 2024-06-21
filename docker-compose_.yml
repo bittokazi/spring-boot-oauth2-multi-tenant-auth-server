@@ -1,0 +1,31 @@
+version: "3"
+services:
+  spring-boot-oauth2-auth-server:
+    container_name: spring-boot-oauth2-auth-server
+    build:
+      context: spring-boot-oauth2-auth-server/
+      dockerfile: Dockerfile
+      args:
+        DEPLOY_ENV: "test-ci-cd"
+    image: "spring-boot-oauth2-auth-server:latest"
+    restart: unless-stopped
+    env_file: spring-boot-oauth2-auth-server/ci-cd-test.env
+    volumes:
+      - /home/bitto/certs:/certs
+    network_mode: "bridge"
+    ports:
+      - "45010:5010"
+
+  auth-kit-frontend:
+    container_name: auth-kit-frontend
+    build:
+      context: auth-kit-frontend/
+      dockerfile: Dockerfile
+      args:
+        DEPLOY_ENV: "test-ci-cd"
+    image: "auth-kit-frontend:latest"
+    restart: unless-stopped
+    env_file: auth-kit-frontend/ci-cd-test.env
+    network_mode: "bridge"
+    ports:
+      - "45011:5011"

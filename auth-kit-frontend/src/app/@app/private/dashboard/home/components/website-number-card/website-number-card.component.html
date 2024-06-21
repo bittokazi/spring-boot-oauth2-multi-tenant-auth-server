@@ -1,0 +1,19 @@
+<div class="card text-center">
+  <div class="card-body">
+    <div class="avatar bg-light-info p-50 mb-1">
+      <div class="avatar-content">
+        <i data-feather="layout" class="font-medium-5"></i>
+      </div>
+    </div>
+    <h2 class="fw-bolder">{{ websites.length }}</h2>
+    <p class="card-text">Websites</p>
+    <button
+      type="button"
+      class="btn btn-primary waves-effect waves-float waves-light"
+      (click)="configureWebsite()"
+    >
+      <ng-container *ngIf="websites.length > 0">Configure</ng-container>
+      <ng-container *ngIf="websites.length < 1">Create</ng-container>
+    </button>
+  </div>
+</div>

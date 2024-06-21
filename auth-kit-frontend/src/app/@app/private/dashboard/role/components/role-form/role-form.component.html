@@ -1,0 +1,38 @@
+<form class="form" [formGroup]="form">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Name"
+        placeHolder="ROLE_*"
+        errorMessage="Please provide a role name consist with all upper case letters and underscore"
+        [control]="form.controls.name"
+        [inputErrors]="customErrors.name"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Title"
+        placeHolder="Title"
+        errorMessage="Please enter a title"
+        [control]="form.controls.title"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-12">
+      <button
+        type="submit"
+        (click)="onSubmit()"
+        [disabled]="form.invalid || loading"
+        class="btn btn-primary me-1"
+      >
+        Submit
+      </button>
+      <button type="reset" class="btn btn-outline-secondary" *ngIf="!editMode">
+        Reset
+      </button>
+    </div>
+  </div>
+</form>

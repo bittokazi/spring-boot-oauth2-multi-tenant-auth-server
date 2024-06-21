@@ -1,0 +1,41 @@
+server:
+  port: 5010
+
+spring:
+  datasource:
+    dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+    url: ${DB_HOSTNAME}
+    port: ${DB_PORT}
+    databaseName: ${DB_NAME}
+    poolName: SpringBootHikariCP
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    openInView: false
+    show_sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      use-new-id-generator-mappings: true
+    properties:
+      hibernate.cache.use_second_levelt_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      hibernate.hbm2ddl.auto: validate
+
+
+
+  thymeleaf:
+    prefix: "classpath:/templates/"
+    suffix: ".html"
+
+liquibase:
+  context: production, test
+
+logging:
+  level:
+    org.springframework.security: trace

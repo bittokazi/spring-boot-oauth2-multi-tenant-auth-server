@@ -1,0 +1,39 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow"></div>
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+      <div class="auth-wrapper auth-basic px-2">
+        <div class="auth-inner my-2">
+          <!-- verify email basic -->
+          <div class="card mb-0">
+            <div class="card-body">
+              <div class="brand-logo" style="justify-content: left">
+                <img src="/app/assets/images/logo.png" style="height: 50px" />
+              </div>
+
+              <h2 class="card-title fw-bolder mb-1">Verify your email ✉️</h2>
+              <p class="card-text mb-2" *ngIf="!loading && success">
+                Email Verified
+              </p>
+              <p class="card-text mb-2" *ngIf="!loading && !success">
+                Email Verification Failed
+              </p>
+              <div class="spinner-wrapper" *ngIf="loading">
+                <div
+                  class="spinner-border text-primary"
+                  style="width: 3rem; height: 3rem"
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- / verify email basic -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

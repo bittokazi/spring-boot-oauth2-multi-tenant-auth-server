@@ -1,0 +1,21 @@
+<button
+  class="btn btn-icon {{ btnClass }} me-1"
+  type="button"
+  [disabled]="disabled"
+  (click)="click()"
+  *ngIf="!loading"
+>
+  <ng-content></ng-content>
+</button>
+<button
+  class="btn btn-icon {{ btnClass }} me-1"
+  type="button"
+  [disabled]="true"
+  *ngIf="loading"
+>
+  <div
+    class="spinner-border text-light"
+    style="height: 0.9rem; width: 0.9rem"
+  ></div>
+  Loading...
+</button>

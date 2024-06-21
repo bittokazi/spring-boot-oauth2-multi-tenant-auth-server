@@ -1,0 +1,135 @@
+[
+  {
+    "active": false,
+    "path": "/dashboard",
+    "icon": "home",
+    "title": "Dashboard",
+    "enabled": true,
+    "enabledInAdmin": "true",
+    "show": true,
+    "subMenu": []
+  },
+  {
+    "active": false,
+    "path": "/dashboard/clients",
+    "icon": "codesandbox",
+    "title": "Clients",
+    "enabled": true,
+    "enabledInAdmin": "true",
+    "show": true,
+    "subMenu": [
+      {
+        "active": false,
+        "path": "/dashboard/clients",
+        "icon": "codesandbox",
+        "title": "All Clients",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": true,
+        "subMenu": []
+      },
+      {
+        "active": false,
+        "path": "/dashboard/clients/add",
+        "icon": "plus-circle",
+        "title": "Add Client",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": true,
+        "subMenu": []
+      },
+      {
+        "active": false,
+        "path": "/dashboard/clients/?/update",
+        "icon": "",
+        "title": "Update Client",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": false,
+        "subMenu": []
+      }
+    ]
+  },
+  {
+    "active": false,
+    "path": "/dashboard/users",
+    "icon": "user",
+    "title": "Users",
+    "enabled": true,
+    "enabledInAdmin": "true",
+    "show": true,
+    "subMenu": [
+      {
+        "active": false,
+        "path": "/dashboard/users",
+        "icon": "user",
+        "title": "All Users",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": true,
+        "subMenu": []
+      },
+      {
+        "active": false,
+        "path": "/dashboard/users/add",
+        "icon": "user-plus",
+        "title": "Add User",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": true,
+        "subMenu": []
+      },
+      {
+        "active": false,
+        "path": "/dashboard/users/?/update",
+        "icon": "alert-triangle",
+        "title": "Update User",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": false,
+        "subMenu": []
+      }
+    ]
+  },
+  {
+    "active": false,
+    "path": "/dashboard/roles",
+    "icon": "key",
+    "title": "Roles",
+    "enabled": true,
+    "enabledInAdmin": "true",
+    "show": true,
+    "subMenu": [
+      {
+        "active": false,
+        "path": "/dashboard/roles",
+        "icon": "key",
+        "title": "All Roles",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": true,
+        "subMenu": []
+      },
+      {
+        "active": false,
+        "path": "/dashboard/roles/add",
+        "icon": "plus",
+        "title": "Add Role",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": true,
+        "subMenu": []
+      },
+      {
+        "active": false,
+        "path": "/dashboard/roles/?/update",
+        "icon": "",
+        "title": "Update Role",
+        "enabled": true,
+        "enabledInAdmin": "true",
+        "show": false,
+        "subMenu": []
+      }
+    ]
+  }
+]

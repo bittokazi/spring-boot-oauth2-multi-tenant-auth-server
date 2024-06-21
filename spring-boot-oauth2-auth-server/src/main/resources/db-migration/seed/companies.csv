@@ -1,0 +1,2 @@
+id,company_key,enabled,name,domain
+test,tenant_one,true,"Tenant One","tenant1.local.auth-kit.xyz"

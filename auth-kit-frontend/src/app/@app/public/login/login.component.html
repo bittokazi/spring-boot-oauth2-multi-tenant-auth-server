@@ -1,0 +1,116 @@
+<app-login-layout>
+  <!-- Login-->
+  <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
+    <div
+      class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto fade-in-1s-login"
+    >
+      <h2 class="card-title fw-bold mb-1">{{ name }}</h2>
+      <p class="card-text mb-2">Please sign-in to your account</p>
+      <form class="auth-login-form mt-2" [formGroup]="form">
+        <!--<div class="mb-1">
+          <label class="form-label" for="login-email">Username</label>
+          <input
+            class="form-control"
+            id="login-email"
+            type="text"
+            name="login-email"
+            placeholder="john.doe"
+            aria-describedby="login-email"
+            autofocus=""
+            tabindex="1"
+            formControlName="username"
+          />
+        </div>
+        <div class="mb-1">
+          <div class="d-flex justify-content-between">
+            <label class="form-label" for="login-password">Password</label
+            ><a [routerLink]="['/forget-password']"
+              ><small>Forgot Password?</small></a
+            >
+          </div>
+          <div class="input-group input-group-merge form-password-toggle">
+            <input
+              class="form-control form-control-merge"
+              id="login-password"
+              type="password"
+              name="login-password"
+              placeholder="············"
+              aria-describedby="login-password"
+              tabindex="2"
+              formControlName="password"
+            /><span class="input-group-text cursor-pointer"
+              ><i data-feather="eye"></i
+            ></span>
+          </div>
+        </div>
+        <app-danger-flat
+          *ngIf="loginCredentialsError"
+          message="Username/Password do not match."
+        >
+        </app-danger-flat>
+        <div class="mb-1">
+          <div class="form-check">
+            <input
+              formControlName="rememberMe"
+              class="form-check-input"
+              id="remember-me"
+              type="checkbox"
+              tabindex="3"
+            />
+            <label class="form-check-label" for="remember-me">
+              Remember Me</label
+            >
+          </div>
+        </div>
+        <div class="mb-1 content-middle"><div id="recaptcha"></div></div> 
+        <button
+          class="btn btn-primary w-100"
+          tabindex="4"
+          (click)="btnLogin()"
+          [disabled]="form.invalid || loggingIn"
+        >
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+            *ngIf="loggingIn"
+          ></span>
+          <ng-container *ngIf="!loggingIn"> Sign in </ng-container>
+        </button>-->
+        <button
+          class="btn btn-primary w-100"
+          tabindex="4"
+          (click)="btnLogin()"
+          [disabled]="loggingIn"
+        >
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+            *ngIf="loggingIn"
+          ></span>
+          <ng-container *ngIf="!loggingIn"> Sign in </ng-container>
+        </button>
+      </form>
+      <!--<p class="text-center mt-2">
+        <span>New on our platform?</span
+        ><a href="/"><span>&nbsp;Create an account</span></a>
+      </p>
+      <div class="divider my-2">
+        <div class="divider-text">or</div>
+      </div>
+      <div class="auth-footer-btn d-flex justify-content-center">
+        <a class="btn btn-facebook" href="#"><i data-feather="facebook"></i></a
+        ><a class="btn btn-twitter white" href="#"
+          ><i data-feather="twitter"></i></a
+        ><a class="btn btn-google" href="#"><i data-feather="mail"></i></a
+        ><a class="btn btn-github" href="#"><i data-feather="github"></i></a>
+      </div> -->
+      <div class="col-md-12" style="margin-top: 25px">
+        <p>Version: v{{ version }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- /Login-->
+</app-login-layout>

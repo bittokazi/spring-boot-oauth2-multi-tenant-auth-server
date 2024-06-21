@@ -1,0 +1,82 @@
+<form class="form" [formGroup]="form">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="First Name"
+        placeHolder="First Name"
+        errorMessage="Please enter a valid first name"
+        [control]="form.controls.firstName"
+      >
+      </app-verticle-text-input>
+    </div>
+
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Last Name"
+        placeHolder="Last Name"
+        errorMessage="Please enter a valid last name"
+        [control]="form.controls.lastName"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Username"
+        placeHolder="Username"
+        errorMessage="Please provide a valid username consists lowercase
+          letters, numbers and _ ."
+        [control]="form.controls.username"
+        [inputErrors]="customErrors.user"
+        [disabled]="edit"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12">
+      <app-verticle-text-input
+        label="Email"
+        placeHolder="Email"
+        type="email"
+        errorMessage="Please enter a valid Email Address."
+        [control]="form.controls.email"
+        [inputErrors]="customErrors.email"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12" *ngIf="!edit">
+      <app-verticle-text-input
+        label="Password"
+        placeHolder="password"
+        type="password"
+        errorMessage="Please enter password"
+        [control]="form.controls.newPassword"
+      >
+      </app-verticle-text-input>
+    </div>
+    <div class="col-md-6 col-12" formArrayName="roles">
+      <app-verticle-select-input
+        label="Role"
+        [control]="form.controls.roles.controls[0].controls.id"
+        key="id"
+        value="title"
+        errorMessage="Please select a role for the user"
+        [items]="roles"
+      >
+      </app-verticle-select-input>
+    </div>
+    <div class="col-12">
+      <button
+        type="submit"
+        (click)="onSubmit()"
+        [disabled]="form.invalid || loading || form.value.roles.length < 1"
+        class="btn btn-primary me-1"
+      >
+        <ng-container *ngIf="!edit"> Add User </ng-container>
+
+        <ng-container *ngIf="edit"> Update User </ng-container>
+      </button>
+      <button *ngIf="!edit" type="reset" class="btn btn-outline-secondary">
+        Reset
+      </button>
+    </div>
+  </div>
+</form>

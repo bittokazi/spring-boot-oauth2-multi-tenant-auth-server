@@ -1,0 +1,23 @@
+<div class="mb-1">
+  <label class="form-label">{{ label }}</label>
+  <input
+    #fileInput
+    class="form-control file-custom-style"
+    type="file"
+    [accept]="fileFormat"
+    [disabled]="disabled"
+    [ngClass]="{
+      'is-invalid': dirty && errorMessage != '',
+      'is-valid': dirty && errorMessage == ''
+    }"
+    (focus)="markDirty()"
+    (blur)="markDirty()"
+    (change)="markDirty()"
+  />
+  <div
+    class="invalid-feedback"
+    [class.show-input-error]="dirty && errorMessage != ''"
+  >
+    {{ errorMessage }}
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<nav aria-label="Page navigation" class="pagination-wrapper">
+  <ul class="pagination mt-3">
+    <li class="page-item">
+      <a class="page-link" (click)="gotoPage(currentPage - 1)">Previous</a>
+    </li>
+
+    <ng-container
+      *ngIf="
+        totalPage.length - currentPage < 5 &&
+        currentPage > 3 &&
+        totalPage.length > 5
+      "
+    >
+      <li class="page-item">
+        <a class="page-link" (click)="gotoPage(0)">1</a>
+      </li>
+      <li class="page-item disabled"><a class="page-link">...</a></li>
+    </ng-container>
+
+    <ng-container *ngIf="currentPage - 3 < 1">
+      <ng-container *ngFor="let i of getFivePages(); let j = index">
+        <li class="page-item" [class.active]="j == currentPage">
+          <a class="page-link" (click)="gotoPage(j)">{{ j + 1 }}</a>
+        </li>
+      </ng-container>
+    </ng-container>
+
+    <ng-container
+      *ngIf="currentPage - 3 > 0 && totalPage.length - currentPage > 4"
+    >
+      <li class="page-item">
+        <a class="page-link" (click)="gotoPage(0)">1</a>
+      </li>
+      <li class="page-item disabled"><a class="page-link">...</a></li>
+
+      <li class="page-item">
+        <a class="page-link" (click)="gotoPage(currentPage - 1)">{{
+          getPrevPage()
+        }}</a>
+      </li>
+      <li class="page-item active">
+        <a class="page-link" (click)="gotoPage(currentPage - 1)">{{
+          getCurrentPage()
+        }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" (click)="gotoPage(currentPage + 1)">{{
+          getNextPage()
+        }}</a>
+      </li>
+      <li class="page-item disabled"><a class="page-link">...</a></li>
+      <li class="page-item">
+        <a class="page-link" (click)="gotoPage(totalPage.length - 1)">{{
+          totalPage.length
+        }}</a>
+      </li>
+    </ng-container>
+
+    <ng-container *ngIf="totalPage.length - currentPage < 5 && currentPage > 3">
+      <ng-container *ngFor="let i of getLastFivePages(); let j = index">
+        <li class="page-item" [class.active]="i == currentPage">
+          <a class="page-link" (click)="gotoPage(i)">{{ i + 1 }}</a>
+        </li>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="totalPage.length > 5 && currentPage < 4">
+      <li class="page-item disabled"><a class="page-link">...</a></li>
+      <li class="page-item">
+        <a class="page-link" (click)="gotoPage(totalPage.length - 1)">{{
+          totalPage.length
+        }}</a>
+      </li>
+    </ng-container>
+
+    <li class="page-item">
+      <a class="page-link" (click)="gotoPage(currentPage + 1)">Next</a>
+    </li>
+  </ul>
+</nav>

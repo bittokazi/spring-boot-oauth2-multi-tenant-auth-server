@@ -1,0 +1,46 @@
+<section id="multiple-column-form">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <ng-container *ngIf="!formLoading">
+            <app-user-form-component
+              [form]="form"
+              [loading]="loading"
+              [roles]="roles"
+              [customErrors]="customErrors"
+              (onSubmitEvent)="onSubmit($event)"
+              [edit]="true"
+            >
+            </app-user-form-component>
+            <br />
+            <form class="form" [formGroup]="passwordForm">
+              <div class="row">
+                <div class="col-md-6 col-12" *ngIf="!edit">
+                  <app-verticle-text-input
+                    label="Password"
+                    placeHolder="password"
+                    type="password"
+                    errorMessage="Please enter password"
+                    [control]="passwordForm.controls.newPassword"
+                  >
+                  </app-verticle-text-input>
+                </div>
+                <div class="col-12">
+                  <button
+                    type="submit"
+                    (click)="onSubmitPassword()"
+                    [disabled]="passwordForm.invalid || loading"
+                    class="btn btn-primary me-1"
+                  >
+                    Update Password
+                  </button>
+                </div>
+              </div>
+            </form>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

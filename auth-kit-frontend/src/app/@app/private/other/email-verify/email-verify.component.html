@@ -1,0 +1,42 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow"></div>
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+      <div class="auth-wrapper auth-basic px-2">
+        <div class="auth-inner my-2">
+          <!-- verify email basic -->
+          <div class="card mb-0">
+            <div class="card-body">
+              <div class="brand-logo" style="justify-content: left">
+                <img src="/app/assets/images/logo.png" style="height: 50px" />
+              </div>
+
+              <h2 class="card-title fw-bolder mb-1">Verify your email ✉️</h2>
+              <p class="card-text mb-2">
+                We've sent a link to your email address:
+                <span class="fw-bolder">{{ user.email }}</span> Please follow
+                the link inside to continue.
+              </p>
+
+              <button class="btn btn-primary w-100" (click)="logout()">
+                Logout
+              </button>
+
+              <div class="mb-1 content-middle"><div id="recaptcha"></div></div>
+
+              <p class="text-center mt-2">
+                <span>Didn't receive an email? </span
+                ><a href="Javascript:void(0)" (click)="sendEmail()"
+                  ><span>&nbsp;Resend</span></a
+                >
+              </p>
+            </div>
+          </div>
+          <!-- / verify email basic -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

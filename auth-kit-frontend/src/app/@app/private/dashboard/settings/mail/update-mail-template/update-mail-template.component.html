@@ -1,0 +1,59 @@
+<section id="multiple-column-form">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form form class="form" *ngIf="!formLoading" [formGroup]="form">
+            <div class="row">
+              <div class="col-md-12 col-12">
+                <app-verticle-text-input
+                  label="Mail Subject"
+                  placeHolder="Subject"
+                  errorMessage="Please enter a valid subject"
+                  [control]="form.controls.subject"
+                >
+                </app-verticle-text-input>
+              </div>
+              <div class="col-md-12 col-12">
+                <div class="mb-1">
+                  <label class="form-label">Avaiable tags</label>
+
+                  <div class="col-md-12">
+                    <ng-Container *ngFor="let label of labels">
+                      <span class="badge rounded-pill bg-primary"
+                        >[{{ label }}]</span
+                      >&nbsp;
+                    </ng-Container>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-12">
+                <div class="mb-1">
+                  <label class="form-label">Mail Body</label>
+                  <ck-editor
+                    name="mailBody"
+                    id="mailBody"
+                    skin="moono-lisa"
+                    lang="en"
+                    [fullPage]="true"
+                    [formControl]="form.controls.body"
+                  ></ck-editor>
+                </div>
+              </div>
+              <div class="col-12">
+                <button
+                  type="submit"
+                  (click)="onSubmit()"
+                  [disabled]="loading"
+                  class="btn btn-primary me-1"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

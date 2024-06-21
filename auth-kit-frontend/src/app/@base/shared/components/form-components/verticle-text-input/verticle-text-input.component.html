@@ -1,0 +1,35 @@
+<div class="mb-1">
+  <label class="form-label">{{ label }}</label>
+  <div class="input-box">
+    <input
+      [type]="type"
+      class="form-control"
+      [style.padding-right]="
+        postFixRef && postFixRef.nativeElement
+          ? postFixRef.nativeElement.offsetWidth + 38 + 'px !important'
+          : ''
+      "
+      [placeholder]="placeHolder"
+      [formControl]="control"
+      [ngClass]="{
+        'is-invalid': control.errors && control.dirty,
+        'is-valid': !control.errors
+      }"
+      [appDisableControl]="disabled"
+    />
+    <span class="postfix" *ngIf="postFix != ''" #postFixRef>{{ postFix }}</span>
+  </div>
+  <div
+    class="invalid-feedback"
+    [class.show-input-error]="control.errors && control.dirty"
+  >
+    <ng-container *ngFor="let inputError of inputErrors">
+      <ng-container *ngIf="control.errors && control.errors[inputError.key]">
+        {{ inputError.message }}
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!checkCustomErrors()">
+      {{ errorMessage }}
+    </ng-container>
+  </div>
+</div>

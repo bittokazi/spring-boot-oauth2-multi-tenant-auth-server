@@ -1,0 +1,11 @@
+.expandable {
+  background: #fff;
+  overflow: hidden;
+  color: #000;
+  transition: all 0.5s ease-in-out;
+  height: 0;
+}
+
+.expanded {
+  height: 40px;
+}

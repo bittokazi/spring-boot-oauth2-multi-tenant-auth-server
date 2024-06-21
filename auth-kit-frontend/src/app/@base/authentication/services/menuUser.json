@@ -1,0 +1,12 @@
+[
+  {
+    "active": false,
+    "path": "/dashboard",
+    "icon": "home",
+    "title": "Dashboard",
+    "enabled": true,
+    "enabledInAdmin": "true",
+    "show": true,
+    "subMenu": []
+  }
+]

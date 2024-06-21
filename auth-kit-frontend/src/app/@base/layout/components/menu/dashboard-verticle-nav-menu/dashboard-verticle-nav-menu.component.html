@@ -1,0 +1,64 @@
+<div class="main-menu-content">
+  <ul
+    class="navigation navigation-main"
+    id="main-menu-navigation"
+    data-menu="menu-navigation"
+  >
+    <ng-container *ngFor="let menu of accessMenu; let i = index">
+      <ng-container
+        *ngIf="
+          (role.name != 'ROLE_SUPER_ADMIN' && menu.enabled && menu.show) ||
+          (role.name == 'ROLE_SUPER_ADMIN' &&
+            menu.enabled &&
+            menu.show &&
+            menu.enabledInAdmin)
+        "
+      >
+        <li
+          class="nav-item"
+          *ngIf="menu.subMenu.length == 0"
+          [class.active]="menu.active"
+        >
+          <a class="d-flex align-items-center" [routerLink]="[menu.path]"
+            ><i [attr.data-feather]="menu.icon"></i
+            ><span class="menu-title text-truncate">{{ menu.title }}</span></a
+          >
+        </li>
+        <li class="nav-item" *ngIf="menu.subMenu.length > 0">
+          <a class="d-flex align-items-center"
+            ><i [attr.data-feather]="menu.icon"></i
+            ><span class="menu-title text-truncate">{{ menu.title }}</span></a
+          >
+          <ul class="menu-content">
+            <ng-container
+              *ngFor="let subMenuItem of menu.subMenu; let j = index"
+            >
+              <ng-container
+                *ngIf="
+                  (role.name != 'ROLE_SUPER_ADMIN' &&
+                    subMenuItem.enabled &&
+                    subMenuItem.show) ||
+                  (role.name == 'ROLE_SUPER_ADMIN' &&
+                    subMenuItem.enabled &&
+                    subMenuItem.show &&
+                    subMenuItem.enabledInAdmin)
+                "
+              >
+                <li [class.active]="subMenuItem.active">
+                  <a
+                    class="d-flex align-items-center"
+                    [routerLink]="[subMenuItem.path]"
+                    ><i [attr.data-feather]="subMenuItem.icon"></i
+                    ><span class="menu-title text-truncate">{{
+                      subMenuItem.title
+                    }}</span></a
+                  >
+                </li></ng-container
+              >
+            </ng-container>
+          </ul>
+        </li>
+      </ng-container>
+    </ng-container>
+  </ul>
+</div>

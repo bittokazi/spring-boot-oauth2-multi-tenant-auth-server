@@ -1,0 +1,12 @@
+<div class="preloader" *ngIf="loading">
+  <div class="loader">
+    <div class="loader__figure"></div>
+    <p class="loader__label" style="margin: 0.5em 0 0 50%"></p>
+  </div>
+</div>
+<ng-container *ngIf="!loading && !accessDenied">
+  <router-outlet></router-outlet>
+</ng-container>
+<ng-container *ngIf="!loading && accessDenied">
+  <h2 style="padding: 20px">🚫 Acess Denied 🚫</h2>
+</ng-container>

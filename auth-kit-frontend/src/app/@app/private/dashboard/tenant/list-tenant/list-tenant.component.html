@@ -1,0 +1,64 @@
+<div class="row" id="table-striped">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Key</th>
+                <th>domain</th>
+                <th>Enabled</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tenant of tenants; let i = index">
+                <td>
+                  {{ tenant.id }}
+                </td>
+                <td>{{ tenant.name }}</td>
+                <td>{{ tenant.companyKey }}</td>
+                <td>{{ tenant.domain }}</td>
+                <td>{{ tenant.enabled }}</td>
+                <td>
+                  <div class="dropdown">
+                    <button
+                      type="button"
+                      class="btn btn-sm dropdown-toggle hide-arrow py-0"
+                      data-bs-toggle="dropdown"
+                    >
+                      <i data-feather="more-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a
+                        class="dropdown-item"
+                        [routerLink]="[
+                          '/dashboard/tenants/',
+                          tenant.id,
+                          'update'
+                        ]"
+                      >
+                        <i data-feather="edit-2" class="me-50"></i>
+                        <span>Edit</span>
+                      </a>
+                      <a
+                        class="dropdown-item"
+                        (click)="switchTenant(tenant.companyKey)"
+                      >
+                        <i data-feather="shuffle" class="me-50"></i>
+                        <span>Switch Tenant</span>
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

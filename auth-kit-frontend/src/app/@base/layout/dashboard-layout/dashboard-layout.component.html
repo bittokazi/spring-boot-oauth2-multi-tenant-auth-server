@@ -1,0 +1,11 @@
+<ng-container *ngIf="!hasAccess">
+  <div class="center">
+    <p>403 | Access Denied</p>
+  </div>
+</ng-container>
+<ng-container *ngIf="hasAccess">
+  <app-dashboard-verticle-light>
+    <ng-container *ngTemplateOutlet="dashboardContent"></ng-container>
+  </app-dashboard-verticle-light>
+  <ng-template #dashboardContent><ng-content></ng-content></ng-template>
+</ng-container>

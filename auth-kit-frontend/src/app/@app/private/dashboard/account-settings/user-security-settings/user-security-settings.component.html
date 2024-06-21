@@ -1,0 +1,297 @@
+<div class="row">
+  <div class="col-12">
+    <app-account-settings-top-bar activeTab="security">
+    </app-account-settings-top-bar>
+    <div class="card">
+      <div class="card-header border-bottom">
+        <h4 class="card-title">Change Password</h4>
+      </div>
+      <div class="card-body pt-1" *ngIf="user">
+        <!-- form -->
+        <form class="validate-form" [fromGroup]="form">
+          <div class="row">
+            <div class="col-12 col-sm-6 mb-1">
+              <div class="col-md-6 col-12" *ngIf="!edit">
+                <app-verticle-text-input
+                  label="Current Password"
+                  placeHolder="Current password"
+                  type="password"
+                  errorMessage="Please enter current password"
+                  [control]="form.controls.currentPassword"
+                  [inputErrors]="customErrors.currentPassword"
+                >
+                </app-verticle-text-input>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-6 mb-1">
+              <app-verticle-text-input
+                label="New Password"
+                placeHolder="New password"
+                type="password"
+                errorMessage="Password must be minumum 8 character long and Min 1 uppercase letter and Min 1 lowercase letter and Min 1 special character and Min 1 number"
+                [control]="form.controls.newPassword"
+                [inputErrors]="customErrors.newPassword"
+              >
+              </app-verticle-text-input>
+            </div>
+            <div class="col-12 col-sm-6 mb-1">
+              <app-verticle-text-input
+                label="Retype New Password"
+                placeHolder="Confirm new password"
+                type="password"
+                errorMessage="password must be 8 character long"
+                [control]="form.controls.newConfirmPassword"
+                [inputErrors]="customErrors.newConfirmPassword"
+              >
+              </app-verticle-text-input>
+            </div>
+            <div class="col-12">
+              <p class="fw-bolder">Password requirements:</p>
+              <ul class="ps-1 ms-25">
+                <li class="mb-50">
+                  Minimum 8 characters long - the more, the better
+                </li>
+                <li class="mb-50">Min 1 uppercase letter</li>
+                <li class="mb-50">Min 1 lowercase letter</li>
+                <li class="mb-50">Min 1 special character</li>
+                <li class="mb-50">Min 1 number</li>
+              </ul>
+            </div>
+            <div class="col-12">
+              <app-loading-button
+                btnClass="btn-primary"
+                [loading]="loading"
+                [disabled]="form.invalid || loading"
+                (buttonClick)="onSubmit()"
+              >
+                <i data-feather="save" class="me-25"></i>
+                <span>Update Password</span>
+              </app-loading-button>
+            </div>
+          </div>
+          <div class="row pt-1" *ngIf="!user.twoFaEnabled">
+            <div class="col-12">
+              <app-loading-button
+                btnClass="btn-success"
+                [loading]="loading"
+                [disabled]="loading"
+                data-bs-toggle="modal"
+                data-bs-target="#default"
+                (buttonClick)="enable2Fa()"
+              >
+                <i data-feather="shield" class="me-25"></i>
+                <span>Enable Two-Step Verification</span>
+              </app-loading-button>
+              <button
+                id="open-recovery-modal"
+                data-bs-toggle="modal"
+                data-bs-target="#scratch-codes"
+                style="display: none"
+              ></button>
+            </div>
+          </div>
+          <div class="row pt-1" *ngIf="user.twoFaEnabled">
+            <div class="col-12">
+              <app-loading-button
+                btnClass="btn-danger"
+                [loading]="loading"
+                [disabled]="loading"
+                (buttonClick)="disable2Fa()"
+              >
+                <i data-feather="shield-off" class="me-25"></i>
+                <span>Disable Two-Step Verification</span>
+              </app-loading-button>
+              <app-loading-button
+                btnClass="btn-warning"
+                [loading]="loading"
+                [disabled]="loading"
+                (buttonClick)="regenrateScratchCode()"
+              >
+                <i data-feather="refresh-cw" class="me-25"></i>
+                <span>Regerate Backup Codes</span>
+              </app-loading-button>
+              <button
+                id="open-recovery-modal-re"
+                data-bs-toggle="modal"
+                data-bs-target="#scratch-codes"
+                style="display: none"
+              ></button>
+            </div>
+          </div>
+        </form>
+        <!--/ form -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Basic trigger modal -->
+<!-- Modal -->
+<div
+  class="modal fade text-start"
+  id="default"
+  tabindex="-1"
+  aria-labelledby="myModalLabel11"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Enable OTP</h4>
+        <button
+          id="modal-close"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h4>
+          Setting up two-step verification is easy, just follow the steps below.
+        </h4>
+        <div class="row" style="margin-top: 35px" *ngIf="otpPayload">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-1">
+                <div class="step-circle">
+                  <span>1</span>
+                </div>
+              </div>
+              <div class="col-sm-11" style="left: -21px">
+                <h6 class="step-title">Download a two-step verification app</h6>
+                <ul class="two-fa-step-ul">
+                  <li>
+                    <span><i class="fab fa-apple"></i></span
+                    >&nbsp;&nbsp;&nbsp;iPhone, iPod Touch, or iPad:
+                    <a
+                      href="https://apps.apple.com/us/app/totp-authenticator-fast-2fa/id1404230533"
+                      target="_blank"
+                      >TOTP Authenticator</a
+                    >
+                    for iOS
+                  </li>
+                  <li>
+                    <span><i class="fab fa-android"></i>&nbsp;&nbsp;&nbsp;</span
+                    >Android devices:
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.authenticator.authservice2"
+                      target="_blank"
+                      >TOTP Authenticator</a
+                    >
+                    for Android
+                  </li>
+                  <li>
+                    <span><i class="fab fa-windows"></i>&nbsp;&nbsp;&nbsp;</span
+                    >Windows devices:
+                    <a
+                      href="https://www.microsoft.com/en-us/p/authenticator/9wzdncrfj3rj"
+                      target="_blank"
+                      >Microsoft Authenticator</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-1">
+                <div class="step-circle">
+                  <span>2</span>
+                </div>
+              </div>
+              <div class="col-sm-11" style="left: -21px">
+                <h6 class="step-title">
+                  Scan this QR code with your verification app
+                </h6>
+                <qrcode
+                  *ngIf="otpPayload.secret != ''"
+                  [qrdata]="otpLink"
+                  [width]="256"
+                  [errorCorrectionLevel]="'M'"
+                ></qrcode>
+                <p style="margin-left: 20px">Key: {{ otpPayload.secret }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-1">
+                <div class="step-circle">
+                  <span>3</span>
+                </div>
+              </div>
+              <div class="col-sm-11" style="left: -21px">
+                <h6 class="step-title">
+                  Enter the resulting verification code
+                </h6>
+                <div style="padding-left: 20px; margin-top: 20px">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Verification Code"
+                    autocomplete="off"
+                    [formControl]="mfaCode"
+                  />
+                  <button
+                    type="submit"
+                    class="btn btn-success mb-2"
+                    style="float: left; margin-top: 20px"
+                    (click)="confirm2Fa()"
+                  >
+                    Confirm Enable
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Basic trigger modal end -->
+
+<!-- Basic trigger modal -->
+<!-- Modal -->
+<div
+  class="modal fade text-start"
+  id="scratch-codes"
+  tabindex="-1"
+  aria-labelledby="myModalLabel1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Save Backup Codes</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h4>Please save the backup codes below.</h4>
+        <div class="row" style="margin-top: 35px">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-sm-12" style="left: -21px">
+                <ul class="two-fa-step-ul">
+                  <li *ngFor="let code of scratchCodes; let i = index">
+                    {{ code }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Basic trigger modal end -->

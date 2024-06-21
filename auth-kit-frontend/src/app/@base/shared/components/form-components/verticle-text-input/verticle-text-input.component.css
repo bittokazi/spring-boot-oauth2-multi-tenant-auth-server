@@ -1,0 +1,21 @@
+.show-input-error {
+  display: block;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.input-box .postfix {
+  position: absolute;
+  right: 38px;
+}
+
+.input-box input {
+}
+
+.input-box:focus-within {
+}

@@ -1,0 +1,18 @@
+<section id="multiple-column-form">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <app-client-form-component
+            [form]="form"
+            [loading]="loading"
+            [edit]="true"
+            [customErrors]="customErrors"
+            (onSubmitEvent)="onSubmit($event)"
+          >
+          </app-client-form-component>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

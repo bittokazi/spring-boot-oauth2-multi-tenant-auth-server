@@ -1,0 +1,10 @@
+{
+  "/public": {
+    "target": "http://localhost:5010",
+    "secure": false
+  },
+  "/api": {
+    "target": "http://localhost:5010",
+    "secure": false
+  }
+}

@@ -1,0 +1,20 @@
+<div class="card text-center">
+  <div class="card-body">
+    <div class="avatar bg-light-info p-50 mb-1">
+      <div class="avatar-content">
+        <i data-feather="book" class="font-medium-5"></i>
+      </div>
+    </div>
+    <h2 class="fw-bolder">
+      {{ sections.length }}/{{ sectionTemplates.length }}
+    </h2>
+    <p class="card-text">Resume Data</p>
+    <button
+      type="button"
+      class="btn btn-primary waves-effect waves-float waves-light"
+      (click)="configureResume()"
+    >
+      Configure
+    </button>
+  </div>
+</div>

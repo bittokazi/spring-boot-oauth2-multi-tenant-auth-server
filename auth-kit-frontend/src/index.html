@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>SSO Login</title>
+  <base href="/app" />
+  <meta name="description" content="SSO Auth Server developed by Bitto Kazi" />
+  <meta name="keywords" content="idp" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="apple-touch-icon" href="/app/assets/dashboard-assets/app-assets/images/pages/login-bg.png" />
+  <link rel="shortcut icon" type="image/x-icon"
+    href="/app/assets/dashboard-assets/app-assets/images/pages/login-bg.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+    rel="stylesheet" />
+
+  <!-- BEGIN: Vendor CSS-->
+  <link rel="stylesheet" type="text/css" href="/app/assets/dashboard-assets/app-assets/vendors/css/vendors.min.css" />
+  <!-- END: Vendor CSS-->
+
+  <!-- BEGIN: Theme CSS-->
+  <link rel="stylesheet" type="text/css" href="/app/assets/dashboard-assets/app-assets/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/app/assets/dashboard-assets/app-assets/css/bootstrap-extended.css" />
+  <link rel="stylesheet" type="text/css" href="/app/assets/dashboard-assets/app-assets/css/colors.css" />
+  <link rel="stylesheet" type="text/css" href="/app/assets/dashboard-assets/app-assets/css/components.css" />
+  <link rel="stylesheet" type="text/css" href="/app/assets/dashboard-assets/app-assets/css/themes/dark-layout.css" />
+  <link rel="stylesheet" type="text/css"
+    href="/app/assets/dashboard-assets/app-assets/css/themes/bordered-layout.css" />
+  <link rel="stylesheet" type="text/css"
+    href="/app/assets/dashboard-assets/app-assets/css/themes/semi-dark-layout.css" />
+
+  <!-- BEGIN: Page CSS-->
+  <link rel="stylesheet" type="text/css"
+    href="/app/assets/dashboard-assets/app-assets/css/core/menu/menu-types/vertical-menu.css" />
+  <!-- END: Page CSS-->
+
+  <!-- BEGIN: Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="/app/assets/dashboard-assets/assets/css/style.css" />
+  <!-- END: Custom CSS-->
+  <style>
+    #master-loader-wrapper {
+      display: block;
+      position: fixed;
+      z-index: 100000;
+      left: 0%;
+      top: 0%;
+      width: 100%;
+      height: 100%;
+      background: white;
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.5s linear;
+    }
+
+    #master-loader-wrapper>.master-loader-content {
+      display: block;
+      position: absolute;
+      z-index: 100000;
+      left: 50%;
+      top: 50%;
+      margin-left: -130px;
+      margin-top: -30px;
+    }
+
+    #master-loader-wrapper>.master-loader-content>.logo {
+      width: 200px;
+      margin-left: 0px;
+      margin-top: -27px;
+    }
+
+    .master-loader-hidden {
+      visibility: hidden !important;
+      opacity: 0 !important;
+      transition: visibility 0s 0.5s, opacity 0.5s linear !important;
+    }
+  </style>
+
+  <script src="https://cdn.ckeditor.com/4.7.1/full/ckeditor.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+  <div id="master-loader-wrapper">
+    <div class="master-loader-content" style="margin-left: -20px">
+      <div class="spinner-border text-dark" style="width: 3rem; height: 3rem"></div>
+    </div>
+  </div>
+  <app-root></app-root>
+  <!-- BEGIN: Vendor JS-->
+  <script src="/app/assets/dashboard-assets/app-assets/vendors/js/vendors.min.js"></script>
+  <script src="/app/assets/dashboard-assets/app-assets/vendors/js/sweetalert2.all.min.js"></script>
+  <!-- BEGIN Vendor JS-->
+</body>
+
+</html>

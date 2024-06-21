@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="bitto" context="production">
+
+        <!-- OAuth2 Tables -->
+        <createTable tableName="oauth_client_details">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="client_id" type="varchar(255)">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="resource_ids" type="varchar(255)" />
+            <column name="client_secret" type="varchar(255)" />
+            <column name="scope" type="varchar(1000)" />
+            <column name="client_authentication_method" type="varchar(255)" />
+            <column name="authorized_grant_types" type="varchar(255)" />
+            <column name="web_server_redirect_uri" type="varchar(1000)" />
+            <column name="authorities" type="varchar(255)" />
+            <column name="access_token_validity" type="INT" />
+            <column name="refresh_token_validity" type="INT" />
+            <column name="additional_information" type="varchar(4096)" />
+            <column name="require_consent" type="BOOLEAN" />
+            <column name="post_logout_url" type="varchar(255)" />
+            <column name="token_type" type="varchar(255)" />
+        </createTable>
+
+        <sql>
+            CREATE TABLE oauth2_authorization (
+            id varchar(100) NOT NULL,
+            registered_client_id varchar(100) NOT NULL,
+            principal_name varchar(200) NOT NULL,
+            authorization_grant_type varchar(100) NOT NULL,
+            authorized_scopes varchar(1000) DEFAULT NULL,
+            attributes text DEFAULT NULL,
+            state varchar(500) DEFAULT NULL,
+            authorization_code_value text DEFAULT NULL,
+            authorization_code_issued_at timestamp DEFAULT NULL,
+            authorization_code_expires_at timestamp DEFAULT NULL,
+            authorization_code_metadata text DEFAULT NULL,
+            access_token_value text DEFAULT NULL,
+            access_token_issued_at timestamp DEFAULT NULL,
+            access_token_expires_at timestamp DEFAULT NULL,
+            access_token_metadata text DEFAULT NULL,
+            access_token_type varchar(100) DEFAULT NULL,
+            access_token_scopes varchar(1000) DEFAULT NULL,
+            oidc_id_token_value text DEFAULT NULL,
+            oidc_id_token_issued_at timestamp DEFAULT NULL,
+            oidc_id_token_expires_at timestamp DEFAULT NULL,
+            oidc_id_token_metadata text DEFAULT NULL,
+            refresh_token_value text DEFAULT NULL,
+            refresh_token_issued_at timestamp DEFAULT NULL,
+            refresh_token_expires_at timestamp DEFAULT NULL,
+            refresh_token_metadata text DEFAULT NULL,
+            user_code_value text DEFAULT NULL,
+            user_code_issued_at timestamp DEFAULT NULL,
+            user_code_expires_at timestamp DEFAULT NULL,
+            user_code_metadata text DEFAULT NULL,
+            device_code_value text DEFAULT NULL,
+            device_code_issued_at timestamp DEFAULT NULL,
+            device_code_expires_at timestamp DEFAULT NULL,
+            device_code_metadata text DEFAULT NULL,
+            PRIMARY KEY (id)
+            )
+        </sql>
+
+        <sql>
+            CREATE TABLE oauth2_authorization_consent (
+            registered_client_id varchar(100) NOT NULL,
+            principal_name varchar(200) NOT NULL,
+            authorities varchar(1000) NOT NULL,
+            PRIMARY KEY (registered_client_id, principal_name)
+            );
+        </sql>
+
+        <createTable tableName="users">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="first_name" type="varchar(128)" />
+            <column name="last_name" type="varchar(128)" />
+            <column name="user_name" type="varchar(128)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="email" type="varchar(128)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="contact_number" type="varchar(128)" />
+            <column name="password" type="varchar(128)" />
+            <column name="enabled" type="BOOLEAN" />
+            <column name="change_password" type="BOOLEAN" />
+            <column name="dob" type="TIMESTAMP" />
+            <column name="image_name" type="varchar(1000)" />
+            <column name="image_absolute_path" type="varchar(1000)" />
+            <column name="last_login" type="TIMESTAMP" />
+            <column name="gender" type="varchar(128)" />
+            <column name="address" type="varchar(1000)" />
+            <column name="email_verified" type="BOOLEAN" />
+            <column name="two_fa_enabled" type="BOOLEAN" />
+            <column name="created_by" type="VARCHAR(255)" />
+            <column name="created_date" type="TIMESTAMP" />
+            <column name="os_user" type="VARCHAR(255)" />
+            <column name="updated_by" type="VARCHAR(255)" />
+            <column name="updated_date" type="TIMESTAMP" />
+            <column name="deleted_at" type="TIMESTAMP" />
+            <column name="version" type="INT" />
+        </createTable>
+
+        <!-- Role Table -->
+        <createTable tableName="role">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="name" type="varchar(128)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="description" type="varchar(128)" />
+            <column name="title" type="varchar(255)" />
+            <column name="created" type="TIMESTAMP" />
+            <column name="updated" type="TIMESTAMP" />
+            <column name="deleted" type="TIMESTAMP" />
+        </createTable>
+
+        <createTable tableName="user_role">
+            <column name="user_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="role_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addUniqueConstraint tableName="user_role"
+                             columnNames="user_id,role_id" constraintName="uq_userid_roleid" />
+
+        <createTable tableName="user_two_fa_secret">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="user_id" type="NUMERIC(20)" />
+            <column name="secret" type="varchar(511)" />
+            <column name="scratch_codes" type="varchar(50000)" />
+        </createTable>
+
+        <createTable tableName="user_trusted_device">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="user_id" type="NUMERIC(20)" />
+            <column name="instance_id" type="varchar(255)" />
+            <column name="device_ip" type="varchar(255)" />
+            <column name="user_agent" type="varchar(10000)" />
+        </createTable>
+
+        <createSequence cycle="true" incrementBy="1"
+                        sequenceName="role_sequence" startValue="3" />
+        <createSequence cycle="true" incrementBy="1"
+                        sequenceName="user_sequence" startValue="2" />
+        <createSequence cycle="true" incrementBy="1"
+                        sequenceName="user_two_fa_secret_sequence" startValue="1" />
+        <createSequence cycle="true" incrementBy="1"
+                        sequenceName="user_trusted_device_sequence" startValue="1" />
+
+    </changeSet>
+
+    <changeSet id="2" author="bitto" context="production">
+        <customChange
+                class="com.bittokazi.oauth2.auth.server.database.seed.SeedOauthClient">
+            <param name="clientFileName" value="/db-migration/seed/clients_tenant.csv" />
+        </customChange>
+    </changeSet>
+
+    <changeSet id="3" author="bitto" context="production">
+        <customChange
+                class="com.bittokazi.oauth2.auth.server.database.seed.SeedUserRole">
+            <param name="userFileName" value="/db-migration/seed/user_tenant.csv" />
+        </customChange>
+    </changeSet>
+
+</databaseChangeLog>

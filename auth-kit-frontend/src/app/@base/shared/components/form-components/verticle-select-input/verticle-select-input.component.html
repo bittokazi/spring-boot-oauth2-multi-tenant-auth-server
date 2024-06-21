@@ -1,0 +1,37 @@
+<div class="mb-1">
+  <label class="form-label" for="basicSelect">{{ label }}</label>
+  <select
+    class="form-select"
+    [formControl]="control"
+    [ngClass]="{
+      'is-invalid': control.errors && control.dirty,
+      'is-valid': !control.errors
+    }"
+  >
+    <ng-container *ngIf="none">
+      <option value="">None</option>
+    </ng-container>
+
+    <ng-container *ngFor="let item of items; let i = index">
+      <ng-container *ngIf="!typeString"
+        ><option [value]="item[key]">{{ item[value] }}</option></ng-container
+      >
+      <ng-container *ngIf="typeString">
+        <option [value]="item">{{ item }}</option>
+      </ng-container>
+    </ng-container>
+  </select>
+  <div
+    class="invalid-feedback"
+    [class.show-input-error]="control.errors && control.dirty"
+  >
+    <ng-container *ngFor="let inputError of inputErrors">
+      <ng-container *ngIf="control.errors && control.errors[inputError.key]">
+        {{ inputError.message }}
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!checkCustomErrors()">
+      {{ errorMessage }}
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="row" id="table-striped">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Client ID</th>
+                <th>Resource Ids</th>
+                <th>Client Authentication Method</th>
+                <th>Authorized Grant Types</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of clients; let i = index">
+                <td>
+                  {{ client.id }}
+                </td>
+                <td></td>
+                <td>{{ client.clientId }}</td>
+                <td>{{ client.resourceIds }}</td>
+                <td>{{ client.clientAuthenticationMethod }}</td>
+                <td>{{ client.authorizedGrantTypes }}</td>
+                <td>
+                  <div class="dropdown">
+                    <button
+                      type="button"
+                      class="btn btn-sm dropdown-toggle hide-arrow py-0"
+                      data-bs-toggle="dropdown"
+                    >
+                      <i data-feather="more-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                      <a
+                        class="dropdown-item"
+                        [routerLink]="[
+                          '/dashboard/clients/',
+                          client.id,
+                          'update'
+                        ]"
+                      >
+                        <i data-feather="edit-2" class="me-50"></i>
+                        <span>Edit</span>
+                      </a>
+                      <a
+                        class="dropdown-item"
+                        (click)="deleteClient(client.id)"
+                      >
+                        <i data-feather="trash-2" class="me-50"></i>
+                        <span>Delete</span>
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

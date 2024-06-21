@@ -1,0 +1,2 @@
+id,client_id,resource_ids,client_secret,scope,client_authentication_method,authorized_grant_types,web_server_redirect_uri,access_token_validity,refresh_token_validity,additional_information,require_consent,post_logout_url,token_type
+user_login_service,4c29umx03un93rb92zny9rx2xu93ry3r,auth_service,h4jt94yg94ghuxc297hxiuhiigGYUTU887i33yrfg3ugfgg3gf23gd2u3832gf32udgy3ft7823fg3i2yf3iyf2f,"trust,tenant:read,tenant:write",client_secret_basic,"authorization_code,refresh_token","",7200,2592000,{"client": "default"},true,"","jwt"

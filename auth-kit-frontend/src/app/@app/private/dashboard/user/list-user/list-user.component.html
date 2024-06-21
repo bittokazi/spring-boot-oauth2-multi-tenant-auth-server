@@ -1,0 +1,68 @@
+<div class="row" id="table-striped">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <app-table-pagination-loader
+            [currentPage]="currentPage"
+            [totalPage]="totalPage"
+            [totalRecord]="totalRecord"
+            [currentCount]="currentCount"
+            [paginationInterface]="this"
+            [showLoader]="users.length < 1"
+          >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users; let i = index">
+                  <td>
+                    {{ user.id }}
+                  </td>
+                  <td>{{ user.firstName }}</td>
+                  <td>{{ user.lastName }}</td>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.roles[0].title }}</td>
+                  <td>
+                    <div class="dropdown">
+                      <button
+                        type="button"
+                        class="btn btn-sm dropdown-toggle hide-arrow py-0"
+                        data-bs-toggle="dropdown"
+                      >
+                        <i data-feather="more-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <a
+                          class="dropdown-item"
+                          [routerLink]="[
+                            '/dashboard/users/',
+                            user.id,
+                            'update'
+                          ]"
+                        >
+                          <i data-feather="edit-2" class="me-50"></i>
+                          <span>Edit</span>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </app-table-pagination-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.spinner-wrapper {
+  float: left;
+  left: 50%;
+  position: relative;
+  margin-left: -26px;
+  margin-top: 20px;
+  margin-bottom: 21px;
+}

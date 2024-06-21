@@ -1,0 +1,72 @@
+<section id="multiple-column-form">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 *ngIf="role">{{ role.title }}</h2>
+          <br />
+          <br />
+          <ng-container
+            *ngFor="let resourceGroup of resourceGroups; let i = index"
+          >
+            <h4>{{ resourceGroup }}</h4>
+            <form
+              *ngIf="formList[resourceGroup]"
+              [formGroup]="formList[resourceGroup]"
+            >
+              <table class="table table-striped">
+                <tbody>
+                  <ng-container
+                    *ngFor="
+                      let control of formList[resourceGroup].controls;
+                      let j = index
+                    "
+                  >
+                    <ng-container [formGroupName]="j">
+                      <tr>
+                        <td>
+                          <div class="col-sm-2">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="inlineCheckbox1"
+                              formControlName="enabled"
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <strong>{{
+                            resources[resourceGroup][j].title
+                          }}</strong>
+                        </td>
+                        <td>{{ resources[resourceGroup][j].resourceType }}</td>
+                        <td>
+                          {{ resources[resourceGroup][j].backendResource }}
+                        </td>
+                        <td>
+                          {{ resources[resourceGroup][j].backendRequestType }}
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </ng-container>
+                </tbody>
+              </table>
+            </form>
+          </ng-container>
+          <br />
+          <br />
+          <div class="col-12">
+            <button
+              type="submit"
+              (click)="onSubmit()"
+              [disabled]="loading"
+              class="btn btn-primary me-1"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

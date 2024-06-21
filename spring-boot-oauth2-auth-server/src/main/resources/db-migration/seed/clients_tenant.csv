@@ -1,0 +1,2 @@
+id,client_id,resource_ids,client_secret,scope,client_authentication_method,authorized_grant_types,web_server_redirect_uri,access_token_validity,refresh_token_validity,additional_information,require_consent,post_logout_url,token_type
+user_login_service,hr82yfhui13fb93i2ebvi24h9g24n239g2,auth_service,ifh249fyh93ui23hf923jf23h9f24jf932f923fib239239f392hf32h9f23h9f23hff2i,"trust",client_secret_basic,"authorization_code,refresh_token","",7200,2592000,{"client": "default"},false,"","jwt"

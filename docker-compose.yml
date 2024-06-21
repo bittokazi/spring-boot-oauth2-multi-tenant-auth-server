@@ -1,0 +1,37 @@
+services:
+  spring-boot-oauth2-auth-server:
+    container_name: spring-boot-oauth2-auth-server
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        DEPLOY_ENV: "test-ci-cd"
+    image: "spring-boot-oauth2-auth-server:latest"
+    restart: unless-stopped
+    env_file: spring-boot-oauth2-auth-server/ci-cd-test.env
+    volumes:
+      - /home/bitto/certs:/certs
+    networks:
+      - authservernetwork
+    ports:
+      - "5020:5020"
+
+  spring-boot-oauth2-auth-server-db:
+    container_name: spring-boot-oauth2-auth-server-db
+    image: postgres
+    restart: unless-stopped
+    networks:
+      authservernetwork:
+        aliases:
+          - authserverdb
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+
+networks:
+  authservernetwork:
+    external: false
+    name: authservernetwork

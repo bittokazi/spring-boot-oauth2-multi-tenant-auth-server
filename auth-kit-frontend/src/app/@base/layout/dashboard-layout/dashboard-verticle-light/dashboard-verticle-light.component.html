@@ -1,0 +1,55 @@
+<app-dashboard-verticle-header> </app-dashboard-verticle-header>
+
+<!-- BEGIN: Main Menu-->
+<div
+  class="main-menu menu-fixed menu-light menu-accordion menu-shadow"
+  data-scroll-to-active="true"
+>
+  <div class="navbar-header">
+    <ul class="nav navbar-nav flex-row">
+      <li class="nav-item me-auto">
+        <a class="navbar-brand" [routerLink]="['/']"
+          ><span class="brand-logo">
+            <h1>{{ name }}</h1>
+          </span>
+        </a>
+      </li>
+      <li class="nav-item nav-toggle">
+        <a
+          class="nav-link modern-nav-toggle pe-0 toggle-menu-close-btn"
+          data-bs-toggle="collapse"
+          ><i
+            class="d-block d-xl-none text-primary toggle-icon font-medium-4"
+            data-feather="x"
+          ></i
+          ><i
+            class="d-none d-xl-block collapse-toggle-icon font-medium-4 text-primary"
+            data-feather="disc"
+            data-ticon="disc"
+          ></i
+        ></a>
+      </li>
+    </ul>
+  </div>
+  <div class="shadow-bottom"></div>
+  <app-dashboard-verticle-nav-menu> </app-dashboard-verticle-nav-menu>
+</div>
+<!-- END: Main Menu-->
+
+<!-- BEGIN: Content-->
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow"></div>
+  <div class="content-wrapper container-xxl p-0">
+    <app-dashboard-verticle-breadcrumb></app-dashboard-verticle-breadcrumb>
+    <div class="content-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
+<!-- END: Content-->
+
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+
+<app-dashboard-verticle-footer></app-dashboard-verticle-footer>

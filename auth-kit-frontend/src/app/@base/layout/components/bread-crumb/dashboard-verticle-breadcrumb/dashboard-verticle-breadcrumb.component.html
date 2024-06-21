@@ -1,0 +1,31 @@
+<div class="content-header row">
+  <div class="content-header-left col-md-9 col-12 mb-2">
+    <div class="row breadcrumbs-top">
+      <div class="col-12">
+        <h2
+          class="content-header-title float-start mb-0"
+          *ngIf="breadCrumbs?.length > 0"
+        >
+          {{ breadCrumbs[breadCrumbs.length - 1].title }}
+        </h2>
+        <div class="breadcrumb-wrapper">
+          <ol class="breadcrumb">
+            <ng-container *ngFor="let breadCrumb of breadCrumbs">
+              <ng-container *ngIf="currentUrl == breadCrumb.path">
+                <li class="breadcrumb-item active">
+                  {{ breadCrumb.title }}
+                </li>
+              </ng-container>
+
+              <ng-container *ngIf="currentUrl != breadCrumb.path">
+                <li class="breadcrumb-item">
+                  <a [routerLink]="[breadCrumb.path]">{{ breadCrumb.title }}</a>
+                </li>
+              </ng-container>
+            </ng-container>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

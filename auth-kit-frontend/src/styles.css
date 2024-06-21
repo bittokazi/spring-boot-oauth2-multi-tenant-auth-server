@@ -1,0 +1,34 @@
+@import url("./assets/dashboard-assets/app-assets/css/plugins/forms/form-validation.css");
+@import url("./assets/dashboard-assets/app-assets/css/pages/authentication.css");
+
+.main-menu .navbar-header .navbar-brand .brand-logo img {
+  max-width: 125px;
+}
+
+.fade-in-1s-login {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.feather-icon-mod-for-error-content {
+  height: 50px;
+  width: 50px;
+  color: #ea5455;
+}
+
+.feather-icon-mod-for-error-content-wrapper {
+  text-align: center;
+  margin-top: 1rem;
+}

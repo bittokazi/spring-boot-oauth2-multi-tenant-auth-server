@@ -1,0 +1,115 @@
+<section id="multiple-column-form">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form class="form" *ngIf="!formLoading" [formGroup]="form">
+            <div class="row">
+              <div class="col-md-6 col-12">
+                <app-verticle-text-input
+                  label="Server"
+                  placeHolder="mail.example.com"
+                  errorMessage="Please enter a valid Server Address"
+                  [control]="form.controls.server"
+                >
+                </app-verticle-text-input>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <app-verticle-text-input
+                  label="Port"
+                  placeHolder="Example: 587"
+                  errorMessage="Please enter a valid Port"
+                  [control]="form.controls.port"
+                >
+                </app-verticle-text-input>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <app-verticle-text-input
+                  label="Serder Name"
+                  placeHolder=""
+                  errorMessage="Please enter a valid sender name"
+                  [control]="form.controls.senderName"
+                >
+                </app-verticle-text-input>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <app-verticle-text-input
+                  label="Serder Address"
+                  placeHolder="example@example.com"
+                  errorMessage="Please enter a valid sender email address"
+                  [control]="form.controls.senderAddress"
+                >
+                </app-verticle-text-input>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <app-verticle-text-input
+                  label="Serder Account"
+                  placeHolder=""
+                  errorMessage="Please enter a valid account name"
+                  [control]="form.controls.senderAccount"
+                >
+                </app-verticle-text-input>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <app-verticle-text-input
+                  label="Password"
+                  placeHolder="password"
+                  type="password"
+                  errorMessage="Please enter password"
+                  [control]="form.controls.password"
+                >
+                </app-verticle-text-input>
+              </div>
+
+              <div class="col-12">
+                <button
+                  type="submit"
+                  (click)="onSubmit()"
+                  [disabled]="form.invalid || loading"
+                  class="btn btn-primary me-1"
+                >
+                  Submit
+                </button>
+                <button type="reset" class="btn btn-outline-secondary">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+          <br />
+          <form *ngIf="!formLoading">
+            <div class="row">
+              <div class="col-md-6 col-12">
+                <div class="mb-1">
+                  <label class="form-label">Test Mail Config</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="example@example.com"
+                    [(ngModel)]="testEmail"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button
+                  type="submit"
+                  (click)="onSubmitTestMail()"
+                  [disabled]="loading"
+                  class="btn btn-primary me-1"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

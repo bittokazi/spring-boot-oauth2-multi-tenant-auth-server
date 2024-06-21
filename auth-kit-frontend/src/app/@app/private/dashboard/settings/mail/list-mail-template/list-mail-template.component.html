@@ -1,0 +1,53 @@
+<div class="row" id="table-striped">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <app-table-pagination-loader
+            [showPagination]="false"
+            [showLoader]="mailTypes.length < 1"
+          >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#Template Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let mailType of mailTypes; let i = index">
+                  <td>
+                    {{ mailType }}
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button
+                        type="button"
+                        class="btn btn-sm dropdown-toggle hide-arrow py-0"
+                        data-bs-toggle="dropdown"
+                      >
+                        <i data-feather="more-vertical"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <a
+                          class="dropdown-item"
+                          [routerLink]="[
+                            '/dashboard/settings/mail/templates/type',
+                            mailType
+                          ]"
+                        >
+                          <i data-feather="edit-2" class="me-50"></i>
+                          <span>Edit</span>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </app-table-pagination-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

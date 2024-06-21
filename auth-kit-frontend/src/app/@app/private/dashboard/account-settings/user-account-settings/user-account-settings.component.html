@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-12">
+    <app-account-settings-top-bar activeTab="account">
+    </app-account-settings-top-bar>
+    <div class="card">
+      <div class="card-header border-bottom">
+        <h4 class="card-title">Profile Details</h4>
+      </div>
+      <div class="card-body my-25" *ngIf="user">
+        <form class="validate-form mt-2 pt-50" [fromGroup]="form">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <app-verticle-text-input
+                label="First Name"
+                placeHolder="First Name"
+                errorMessage="Please enter a valid first name"
+                [control]="form.controls.firstName"
+              >
+              </app-verticle-text-input>
+            </div>
+
+            <div class="col-md-6 col-12">
+              <app-verticle-text-input
+                label="Last Name"
+                placeHolder="Last Name"
+                errorMessage="Please enter a valid last name"
+                [control]="form.controls.lastName"
+              >
+              </app-verticle-text-input>
+            </div>
+            <div class="col-md-6 col-12">
+              <app-verticle-text-input
+                label="Username"
+                placeHolder="Username"
+                errorMessage="Please provide a valid username consists lowercase
+                      letters, numbers and _ ."
+                [control]="form.controls.username"
+                [inputErrors]="customErrors.user"
+                disabled="true"
+              >
+              </app-verticle-text-input>
+            </div>
+            <div class="col-md-6 col-12">
+              <app-verticle-text-input
+                label="Email"
+                placeHolder="Email"
+                type="email"
+                errorMessage="Please enter a valid Email Address."
+                [control]="form.controls.email"
+                [inputErrors]="customErrors.email"
+              >
+              </app-verticle-text-input>
+            </div>
+            <div class="col-12">
+              <app-loading-button
+                btnClass="btn-primary"
+                [loading]="loading"
+                [disabled]="form.invalid || loading"
+                (buttonClick)="onSubmit()"
+              >
+                <i data-feather="save" class="me-25"></i>
+                <span>Update</span>
+              </app-loading-button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
